@@ -4,6 +4,7 @@ import Zoombanner from'../Images/Zoombanner.jpg';
 import {API_ASSIGNMENT_NOTIFICATION_URL,API_STUDENT_ATTEND_CLASS_URL,API_STUDENT_HOMEWORK_LIVECLASS_URL,API_LIVECLASS_ORAL_URL} from '../Services/api'
 import { useParams } from 'react-router-dom';
 import Waitingclass from '../Components/Classmodules/Waitingclass';
+import Liveclass from '../Components/Liveclass/Liveclass';
 import axios from 'axios';
 
 import Stuedentclassworks from '../Components/Classmodules/Stuedentclassworks';
@@ -106,9 +107,9 @@ export default function Livetreaming() {
             <div className='row'>
                 <div className='col-md-5 h-100'>
                 <div className='jigsawlivesteaming'>
-                <img src={Zoombanner}></img>
-                {/* <iframe width="560" height="350" src="https://us05web.zoom.us/j/83843735412?pwd=UomyYWbdAThH1UkECTllLu7W5BHDK4.1" ></iframe> */}
-                 </div>
+                {/* <img src={Zoombanner}></img> */}
+               <Liveclass/>
+                </div>
                 </div>
 
                 <div className="col-lg-7">

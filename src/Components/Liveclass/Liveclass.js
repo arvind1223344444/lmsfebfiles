@@ -12,8 +12,7 @@ import {
   LocalVideoTrack,
   useClientEvent,
 } from "agora-rtc-react";
-import AgoraRTC, { ILocalAudioTrack, ILocalVideoTrack } from "agora-rtc-sdk-ng";
-
+import AgoraRTC from "agora-rtc-sdk-ng";
 
 function Liveclass() {
   const client = useRTCClient(AgoraRTC.createClient({ codec: "vp8", mode: "rtc" }));
@@ -23,19 +22,19 @@ function Liveclass() {
   const [inCall, setInCall] = useState(false);
 
   return (
-    <div >
+    <div>
       <h1> Join Live class </h1>
       {!inCall ? (
-        <div >
-        <Form
-          AppID={AppID}
-          setAppID={setAppID}
-          channelName={channelName}
-          setChannelName={setChannelName}
-          token={token}
-          setToken={setToken}
-          setInCall={setInCall}
-        />
+        <div>
+          <Form
+            AppID={AppID}
+            setAppID={setAppID}
+            channelName={channelName}
+            setChannelName={setChannelName}
+            token={token}
+            setToken={setToken}
+            setInCall={setInCall}
+          />
         </div>
       ) : (
         <AgoraRTCProvider client={client}>
@@ -48,7 +47,7 @@ function Liveclass() {
   );
 }
 
-function Videos(props: { channelName: string; AppID: string; token: string }) {
+function Videos(props) {
   const { AppID, channelName, token } = props;
   const { isLoading: isLoadingMic, localMicrophoneTrack } = useLocalMicrophoneTrack();
   const { isLoading: isLoadingCam, localCameraTrack } = useLocalCameraTrack();
@@ -79,9 +78,9 @@ function Videos(props: { channelName: string; AppID: string; token: string }) {
   return (
     <>
       <div>
-        <LocalVideoTrack track={localCameraTrack} play={true}  />
+        <LocalVideoTrack track={localCameraTrack} play={true} />
         {remoteUsers.map((user) => (
-          <RemoteUser user={user}  />
+          <RemoteUser user={user} />
         ))}
       </div>
       <br />
@@ -90,10 +89,10 @@ function Videos(props: { channelName: string; AppID: string; token: string }) {
   );
 }
 
-const Controls = (props: { localMicrophoneTrack: ILocalAudioTrack; localCameraTrack: ILocalVideoTrack }) => {
+const Controls = (props) => {
   const { localMicrophoneTrack, localCameraTrack } = props;
   return (
-    <div >
+    <div>
       <button onClick={() => void localMicrophoneTrack.setMuted(!localMicrophoneTrack.muted)}>Mute Mic</button>
       <button onClick={() => void localCameraTrack.setMuted(!localCameraTrack.muted)}>Mute Cam</button>
     </div>
@@ -101,15 +100,7 @@ const Controls = (props: { localMicrophoneTrack: ILocalAudioTrack; localCameraTr
 };
 
 /* Standard form to enter AppID and Channel Name */
-function Form(props: {
-  AppID: string;
-  setAppID: React.Dispatch<React.SetStateAction<string>>;
-  channelName: string;
-  setChannelName: React.Dispatch<React.SetStateAction<string>>;
-  token: string;
-  setToken: React.Dispatch<React.SetStateAction<string>>;
-  setInCall: React.Dispatch<React.SetStateAction<boolean>>;
-}) {
+function Form(props) {
   const { AppID, setAppID, channelName, setChannelName, token, setToken, setInCall } = props;
   return (
     <div>
@@ -139,5 +130,3 @@ function Form(props: {
 }
 
 export default Liveclass;
-
-
